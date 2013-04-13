@@ -16,7 +16,7 @@ This guide will describe a setup for updated download or IAP numbers visualized 
 - open Status Board on your iPad, create a new "Graph", enter the URL to your webserver's folder
 
 Enjoy your downloads!
-<img src="https://github.com/omichde/BOMAAB/blob/master/screen.jpg">
+<img src="https://raw.github.com/omichde/BOMAAB/master/screen.jpg">
 
 # Setup
 
