@@ -1,6 +1,6 @@
 # BOMAAB - APPs are Boarding
 
-This guide will describe a setup for updated download or IAP numbers visualized by [Panic's Status Board](http://www.panic.com/statusboard/).
+This guide will describe a setup for self-hosted, always-updated download/IAP statistics visualized by [Panic's Status Board](http://www.panic.com/statusboard/).
 
 ## Requirements:
 - server with Java, MySQL, Bash, PHP, Cron
@@ -125,13 +125,20 @@ Because download numbers are default, you can shorten the link like this:
 
 # Notes
 
-- You can and should add htaccess/htpasswd or any other security measures to your graph script folder.
-- Again for improved security you can and should seperate the <tt>update.sh</tt> script folder from your graph script folder.
+- you can add htaccess/htpasswd or any other security measures to your graph script folder
+- again for improved security you can seperate the <tt>update.sh</tt> script folder from your graph script folder
 - apart from my university days long ago this is my first bash script - it's fairly tested but a unix geek could improve it, I bet
+- direct purchase numbers are not handled - yet
+- you can copy and modify the <tt>update.sh</tt> script to import even older daily reports you might have in a backup
+
+# Links
+
+- the MySQL structure and import idea based on [Björn Sållarp AppDailySales Import](http://blog.sallarp.com/fetching-app-store-sales-statistics-from-itunes-connect-into-mysql-using-appdailysales/) although I prefer Apples download Java class
+- Apples [APP Store Reporting Instructions](http://www.apple.com/itunesnews/docs/AppStoreReportingInstructions.pdf) for explanation of CSV fields
 
 ## Contact
 
-omichde - Oliver Michalak - oliver@werk01.de
+[Oliver Michalak](mailto:oliver@werk01.de) - [omichde](https://twitter.com/omichde)
 
 ## License
 
