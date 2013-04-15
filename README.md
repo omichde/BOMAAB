@@ -10,6 +10,7 @@ This guide will describe a setup for self-hosted, always-updated download/IAP st
 ## tl;dr
 
 - copy <tt>update.sh</tt>, <tt>index.php</tt> and <tt>db.php</tt> to a folder of your web server
+- download and decompress [Autoingestion](http://apple.com/itunesnews/docs/Autoingestion.class.zip) to that folder
 - create the MySQL table described under "MySQL setup"
 - open <tt>update.sh</tt> and enter your credentials in the header, enter them again in <tt>db.php</tt>
 - run update.sh manually and check if everything runs fine; create a crontab entry for regular updates
