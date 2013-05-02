@@ -46,6 +46,20 @@ This number can be found in [itunesconnect](https://itunesconnect.apple.com) und
 
 This is your user name and password for the MySQL database. The downloaded daily reports will partially be stored into your MySQL table.
 
+  LOGDIR="$HOME/Library/Logs"
+
+Set this to where you want the log file placed.  The default is fine for OS X; Linux/\*BSD users may want to set this to `/var/log` or something else.
+
+  OSXDATE="YES"
+
+Set this to YES if your `date` command supports the `-v` flag to calculate and print dates in the past (run `man date` to find out if yours does or not.  Most Linux/`*BSD variants don't.)
+
+  REQUIRES_LOCAL_INFILE="NO"
+
+Set this to "YES" if your `mysqld` requires the `--local-infile=1` flag.  If you run the script but get the error `The used command is not allowed with this MySQL version` then yours does.  Note that if this is the case, you will also need to modify the `mysqld` configuration file.  Edit the file `/etc/my.cnf` and in the `[mysqld]` section, ensure the following line is present.  (if it isn't, or the value is set to something other than `1`, add/change it appropriately.)
+
+  local-infile=1
+
 ## MySQL setup
 
 The scripts assume a database called <tt>itunesconnect</tt> with a table called <tt>sales</tt>. Its structure is closely modeled after the reports file format. Create the table with the following SQL command:
