@@ -12,7 +12,7 @@ This guide will describe a setup for self-hosted, always-updated download/IAP st
 - copy <tt>update.sh</tt>, <tt>index.php</tt> and <tt>db.php</tt> to a folder of your web server
 - download and decompress [Autoingestion](http://apple.com/itunesnews/docs/Autoingestion.class.zip) to that folder
 - create the MySQL table described under "MySQL setup"
-- open <tt>update.sh</tt> and enter your credentials in the header, enter them again in <tt>db.php</tt>
+- open <tt>update.sh</tt> and enter your credentials in the header, enter them again in <tt>db.php</tt>  (note: if you don't wish to use your normal iTunes Connect user/password, you can create a "sales-only" sub-user with a different password)
 - run update.sh manually and check if everything runs fine; create a crontab entry for regular updates
 - open Status Board on your iPad, create a new "Graph", enter the URL to your webserver's folder
 
@@ -34,6 +34,8 @@ Create a folder anywhere you like for downloading the reports regularly, copy <t
 	APPLEPASSWORD="your-password"
 
 This is your Apple-ID and password for [itunesconnect](https://itunesconnect.apple.com).
+
+If you don't wish to use your normal iTunes Connect user/password, you can create a "sales-only" sub-user with a different password.
 
 	APPLEVENDORID="your-vendor-id"
 
