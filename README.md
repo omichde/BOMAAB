@@ -56,9 +56,7 @@ Set this to YES if your `date` command supports the `-v` flag to calculate and p
 
   REQUIRES_LOCAL_INFILE="NO"
 
-Set this to "YES" if your `mysqld` requires the `--local-infile=1` flag.  If you run the script but get the error `The used command is not allowed with this MySQL version` then yours does.  Note that if this is the case, you will also need to modify the `mysqld` configuration file.  Edit the file `/etc/my.cnf` and in the `[mysqld]` section, ensure the following line is present.  (if it isn't, or the value is set to something other than `1`, add/change it appropriately.)
-
-  local-infile=1
+Set this to "YES" if your `mysqld` requires the `--local-infile=1` flag.  If you run the script but get the error `The used command is not allowed with this MySQL version` then yours does.  Note that if this is the case, you will also need to modify the `mysqld` configuration file.  Edit the file `/etc/my.cnf` and in the `[mysqld]` section, ensure that the line `local-infile=1` is present.  (if it isn't, or the value is set to something other than `1`, add/change it appropriately.)
 
 ## MySQL setup
 
