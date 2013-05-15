@@ -12,7 +12,7 @@ This guide will describe a setup for self-hosted, always-updated download/IAP st
 - copy <tt>update.sh</tt>, <tt>index.php</tt> and <tt>db.php</tt> to a folder of your web server
 - download and decompress [Autoingestion](http://apple.com/itunesnews/docs/Autoingestion.class.zip) to that folder
 - create the MySQL table described under "MySQL setup"
-- open <tt>update.sh</tt> and enter your credentials in the header, enter them again in <tt>db.php</tt>
+- open <tt>update.sh</tt> and enter your credentials in the header, enter them again in <tt>db.php</tt>  (note: if you don't wish to use your normal iTunes Connect user/password, you can create a "sales-only" sub-user with a different password)
 - run update.sh manually and check if everything runs fine; create a crontab entry for regular updates
 - open Status Board on your iPad, create a new "Graph", enter the URL to your webserver's folder
 
@@ -35,6 +35,8 @@ Create a folder anywhere you like for downloading the reports regularly, copy <t
 
 This is your Apple-ID and password for [itunesconnect](https://itunesconnect.apple.com).
 
+If you don't wish to use your normal iTunes Connect user/password, you can create a "sales-only" sub-user with a different password.
+
 	APPLEVENDORID="your-vendor-id"
 
 This number can be found in [itunesconnect](https://itunesconnect.apple.com) under "Sales and Trends". In the headline, after your login name, the number like <tt>80012345</tt> is your Vendor ID.
@@ -43,6 +45,18 @@ This number can be found in [itunesconnect](https://itunesconnect.apple.com) und
 	MYSQLPASSWORD="your-mysql-password"
 
 This is your user name and password for the MySQL database. The downloaded daily reports will partially be stored into your MySQL table.
+
+	LOGDIR="$HOME/Library/Logs"
+
+Set this to where you want the log file placed.  The default is fine for OS X; Linux/\*BSD users may want to set this to `/var/log` or something else.
+
+	OSXDATE="YES"
+
+Set this to YES if your `date` command supports the `-v` flag to calculate and print dates in the past (run `man date` to find out if yours does or not.  Most Linux/`*BSD variants don't.)
+
+	REQUIRES_LOCAL_INFILE="NO"
+
+Set this to "YES" if your `mysqld` requires the `--local-infile=1` flag.  If you run the script but get the error `The used command is not allowed with this MySQL version` then yours does.  Note that if this is the case, you will also need to modify the `mysqld` configuration file.  Edit the file `/etc/my.cnf` and in the `[mysqld]` section, ensure that the line `local-infile=1` is present.  (if it isn't, or the value is set to something other than `1`, add/change it appropriately.)
 
 ## MySQL setup
 
