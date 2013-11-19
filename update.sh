@@ -1,7 +1,5 @@
 #!/bin/bash
-# enter your credentials here:
-APPLELOGIN="your-apple-id"
-APPLEPASSWORD="your-password"
+# enter your credentials here and in login.properties:
 APPLEVENDORID="your-vendor-id"
 MYSQLUSER="your-mysql-username"
 MYSQLPASSWORD="your-mysql-password"
@@ -36,7 +34,7 @@ else
 		DATE=$(date -d "1 day ago" +%Y%m%d)
 	fi
 fi
-java Autoingestion $APPLELOGIN $APPLEPASSWORD $APPLEVENDORID Sales Daily Summary $DATE
+java Autoingestion login.properties $APPLEVENDORID Sales Daily Summary $DATE
 FNAME="S_D_${APPLEVENDORID}_${DATE}.txt"
 if [ -f "$FNAME.gz" ]; then
 	gunzip "$FNAME.gz"
