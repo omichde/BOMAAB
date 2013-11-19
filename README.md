@@ -9,10 +9,12 @@ This guide will describe a setup for self-hosted, always-updated download/IAP st
 
 ## tl;dr
 
-- copy <tt>update.sh</tt>, <tt>index.php</tt> and <tt>db.php</tt> to a folder of your web server
+- copy <tt>update.sh</tt>, <tt>index.php</tt>, <tt>login.properties</tt> and <tt>db.php</tt> to a folder of your web server
 - download and decompress [Autoingestion](http://apple.com/itunesnews/docs/Autoingestion.class.zip) to that folder
 - create the MySQL table described under "MySQL setup"
-- open <tt>update.sh</tt> and enter your credentials in the header, enter them again in <tt>db.php</tt>  (note: if you don't wish to use your normal iTunes Connect user/password, you can create a "sales-only" sub-user with a different password)
+- open <tt>login.properties</tt> and enter your credentials
+- open <tt>update.sh</tt> and enter your vendor ID in the header
+- enter the credentials in <tt>db.php</tt>
 - run update.sh manually and check if everything runs fine; create a crontab entry for regular updates
 - open Status Board on your iPad, create a new "Graph", enter the URL to your webserver's folder
 
@@ -28,14 +30,16 @@ MacMini with OS-X Server and DynDNS is running fine for me even on a DSL connect
 
 In the [APP Store Reporting Instructions](http://www.apple.com/itunesnews/docs/AppStoreReportingInstructions.pdf) Apple provides the link to the Autoingestion class. This Java class will be used to download the daily reports, which are initially stored as a CSV file and imported later into a MySQL database.
 
-Create a folder anywhere you like for downloading the reports regularly, copy <tt>update.sh</tt> into this folder and open it to adjust your login credentials:
+Create a folder anywhere you like for downloading the reports regularly, copy <tt>login.properties</tt> into this folder and open it to adjust your login credentials:
 
-	APPLELOGIN="your-apple-id"
-	APPLEPASSWORD="your-password"
+	userID = "your-apple-id"
+	password = "your-password"
 
 This is your Apple-ID and password for [itunesconnect](https://itunesconnect.apple.com).
 
 If you don't wish to use your normal iTunes Connect user/password, you can create a "sales-only" sub-user with a different password.
+
+Copy and open <tt>update.sh</tt> and enter your vendor ID. 
 
 	APPLEVENDORID="your-vendor-id"
 
@@ -48,7 +52,7 @@ This is your user name and password for the MySQL database. The downloaded daily
 
 	LOGDIR="$HOME/Library/Logs"
 
-Set this to where you want the log file placed.  The default is fine for OS X; Linux/\*BSD users may want to set this to `/var/log` or something else.
+Set this to where you want the log file placed. The default is fine for OS X; Linux/\*BSD users may want to set this to `/var/log` or something else.
 
 	OSXDATE="YES"
 
@@ -60,7 +64,7 @@ Set this to "YES" if your `mysqld` requires the `--local-infile=1` flag.  If you
 
 ## MySQL setup
 
-The scripts assume a database called <tt>itunesconnect</tt> with a table called <tt>sales</tt>. Its structure is closely modeled after the reports file format. Create the table with the following SQL command:
+The scripts assumes a database called <tt>itunesconnect</tt> with a table called <tt>sales</tt>. Its structure is closely modeled after the reports file format. Create the table with the following SQL command:
 
 	CREATE TABLE `sales` (
 	  `Provider` varchar(255),
@@ -150,6 +154,10 @@ Because download numbers are default, you can shorten the link like this:
 
 - the MySQL structure and import idea based on [Björn Sållarp AppDailySales Import](http://blog.sallarp.com/fetching-app-store-sales-statistics-from-itunes-connect-into-mysql-using-appdailysales/) although I prefer Apples download Java class
 - Apples [APP Store Reporting Instructions](http://www.apple.com/itunesnews/docs/AppStoreReportingInstructions.pdf) for explanation of CSV fields
+
+# Version
+
+- nov, 2013: updated credential mechanism to honour the login.properties file mechanism for the latest Apple Autoingestion.class
 
 ## Contact
 
