@@ -157,6 +157,7 @@ Because download numbers are default, you can shorten the link like this:
 
 # Version
 
+- dec, 2013: fixed import of utf8 character set encoding
 - nov, 2013: updated credential mechanism to honour the login.properties file mechanism for the latest Apple Autoingestion.class
 
 ## Contact
